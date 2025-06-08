@@ -1,0 +1,20 @@
+
+.authList {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authLink {
+  padding: 0.5rem 1rem;
+  color: var(--c-primary-text);
+  background-color: var(--c-logo);
+  border: none;
+  border-radius: 0.4rem;
+  transition: background-color 350ms ease-in;
+  cursor: pointer;
+}
+
+.authLink:hover {
+  background-color: var(--c-text-secondary);
+}
