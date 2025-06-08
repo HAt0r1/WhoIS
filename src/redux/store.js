@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {setupAxiosInterceptors} from "./auth/operations.js";
-import authReducer from "auth/slice.js";
+import authReducer from "./auth/slice.js";
 import {
     persistStore,
     persistReducer,
