@@ -1,13 +1,17 @@
 import Header from '../Header/Header.jsx';
+import {useLocation} from "react-router-dom";
 
-const LayoutApp = ({children}) => {
+const LayoutApp = ({ children }) => {
+    const location = useLocation();
+    const hideHeaderPaths = ['/signin', '/signup'];
+    const shouldHideHeader = hideHeaderPaths.includes(location.pathname);
+
     return (
         <>
-            <Header />
+            {!shouldHideHeader && <Header />}
             {children}
-
         </>
     );
-}
+};
 
 export default LayoutApp;
