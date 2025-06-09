@@ -3,18 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {signOut} from "../../redux/auth/operations.js"
 import {selectUser} from "../../redux/auth/selectors.js";
 
-import { FaRegUser } from "react-icons/fa6";
+import css from "./Usernav.module.css";
 
 const UserNav = () => {
     const user = useSelector(selectUser);
     const dispatch = useDispatch();
 
     return (
-        <div>
-            <div className="userContainer">
-                <FaRegUser/>
-            </div>
-            <Link onClick={() => dispatch(signOut())}>Logout</Link>
+        <div className={css.container}>
+            <p className={css.text}>{user.phone}</p>
+            <Link className={css.link} onClick={() => dispatch(signOut())}>Logout</Link>
         </div>
     )
 }
