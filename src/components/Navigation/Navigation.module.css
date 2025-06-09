@@ -1,7 +1,12 @@
 
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .link {
   color: var(--c-primary-text);
-  font-size: 1rem;
   font-weight: 500;
   transition: color 350ms ease-in;
 }

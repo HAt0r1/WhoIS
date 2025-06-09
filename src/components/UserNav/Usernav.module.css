@@ -1,0 +1,26 @@
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.text {
+  color: var(--c-primary-text);
+  font-weight: 500;
+}
+
+.link {
+  padding: 0.5rem 1rem;
+  color: var(--c-primary-text);
+  background-color: var(--c-logo);
+  border: none;
+  border-radius: 0.4rem;
+  transition: background-color 350ms ease-in;
+  cursor: pointer;
+}
+
+.link:hover {
+  background-color: var(--c-text-secondary);
+}

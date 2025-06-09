@@ -1,0 +1,65 @@
+
+.form {
+  min-width: 35%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: 0.0825rem solid var(--c-logo);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  gap: 1rem;
+}
+
+.title {
+  font-family: var(--f-secondary);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--c-primary-text);
+  line-height: 1.11;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.formEl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+
+.label {
+  font-size: 0.825rem;
+  color: var(--c-primary-text);
+}
+
+.input {
+  height: 1.6rem;
+  padding-left: 0.5rem;
+  color: var(--c-primary-text);
+  background-color: transparent;
+  outline: none;
+  border: 0.09375rem solid #fafafa;
+  border-radius: 0.25rem;
+  transition: border-color 350ms ease-in;
+}
+
+.input:focus {
+  border-color: var(--c-logo);
+}
+
+.button {
+  color: var(--c-primary-text);
+  background-color: var(--c-logo);
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  margin-inline: auto;
+  border: none;
+  border-radius: 0.25rem;
+  transition: background-color 350ms ease-in;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--c-text-secondary);
+}
