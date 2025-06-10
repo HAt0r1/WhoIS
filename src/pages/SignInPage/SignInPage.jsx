@@ -1,7 +1,12 @@
+import SignInForm from "../../components/SignInForm/SignInForm.jsx";
+import css from "./SignInPage.module.css";
+
 
 const SignInPage = () => {
     return (
-        <h1>SignIn Page</h1>
+        <main className={css.main}>
+            <SignInForm />
+        </main>
     )
 }
 
