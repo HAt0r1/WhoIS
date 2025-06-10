@@ -12,15 +12,17 @@ const SignUpForm = () => {
     const dispatch = useDispatch();
     const navigation = useNavigate();
 
-    const handleSubmit = async (values, {resetForm}) => {
+    const handleSubmit = async (values, { resetForm }) => {
         try {
             const result = await dispatch(signUp(values));
-            if (result) {
+            if (result.meta.requestStatus === "fulfilled") {
                 resetForm();
                 navigation("/");
+            } else {
+                console.error("Registration failed:", result.error.message);
             }
         } catch (error) {
-            console.error("Sign up failed:", error);
+            console.error("Unexpected error during registration:", error);
         }
     };
 
