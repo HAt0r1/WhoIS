@@ -1,8 +1,7 @@
-
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { setToken } from "./slice";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const apiInstance = axios.create({
     baseURL: "https://whois-backend.onrender.com",
@@ -22,25 +21,29 @@ export const clearAuthHeader = () => {
 
 export const setupAxiosInterceptors = (store) => {
     apiInstance.interceptors.response.use(
-        (response) => response,
-        async (error) => {
+        response => response,
+        async error => {
             const originalRequest = error.config;
+            const { status } = error.response ?? {};
+
             if (
-                error.response?.status === 401 &&
-                !originalRequest._retry
+                status === 401 &&
+                !originalRequest._retry &&
+                !originalRequest.url.endsWith('/auth/refresh')
             ) {
                 originalRequest._retry = true;
                 try {
-                    const response = await apiInstance.post("/auth/refresh");
-                    const accessToken = response.data.data.accessToken;
-                    setAuthHeader(accessToken);
-                    store.dispatch(setToken({ token: accessToken }));
-                    originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+                    const resp = await apiInstance.post('/auth/refresh');
+                    const newToken = resp.data.data.accessToken;
+                    setAuthHeader(newToken);
+                    store.dispatch(setToken({ token: newToken }));
+                    originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
                     return apiInstance(originalRequest);
-                } catch (err) {
-                    return Promise.reject(err);
+                } catch {
+                    return Promise.reject(error);
                 }
             }
+
             return Promise.reject(error);
         }
     );
@@ -49,7 +52,8 @@ export const setupAxiosInterceptors = (store) => {
 export const signUp = createAsyncThunk("auth/signup", async (newUser, thunkAPI) => {
     try {
         const response = await apiInstance.post("/auth/register", newUser);
-        setAuthHeader(response.data.data.accessToken);
+        const token = response.data.data.accessToken;
+        setAuthHeader(token);
         return response.data.data;
     } catch (error) {
         toast.error(`Sign Up error: ${error.message}`);
@@ -60,12 +64,14 @@ export const signUp = createAsyncThunk("auth/signup", async (newUser, thunkAPI) 
 export const signIn = createAsyncThunk("auth/signin", async (user, thunkAPI) => {
     try {
         const response = await apiInstance.post("/auth/login", user);
+        console.log(response.data.data)
         setAuthHeader(response.data.data.accessToken);
         return response.data.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
     }
 });
+
 
 export const signOut = createAsyncThunk("auth/signout", async (_, thunkAPI) => {
     try {
