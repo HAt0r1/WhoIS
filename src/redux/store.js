@@ -25,9 +25,14 @@ export const store = configureStore({
         }),
 });
 
-const token = store.getState().auth.token;
-if (token) setAuthHeader(token);
+// const token = store.getState().auth.token;
+// if (token) setAuthHeader(token);
 
 setupAxiosInterceptors(store);
 
 export const persistor = persistStore(store);
+
+persistor.subscribe(() => {
+    const token = store.getState().auth.token;
+    if (token) setAuthHeader(token);
+});
