@@ -25,27 +25,27 @@ const SearchRes = () => {
                 onSubmit={handleSearch}>
                 <Form className={css.form}>
                     <Field className={css.input} type="text" name="domain" id={searchId} placeholder="e.g. google.com"/>
-                    <button type="submit"><CiSearch /></button>
+                    <button className={css.button} type="submit"><CiSearch className={css.search} /></button>
                 </Form>
             </Formik>
 
             {result && (
-                <div className="domain-info">
-                    <h2>{result.domain}</h2>
-                    <ul>
-                        <li>
-                            <h3>Administrative Contact</h3>
+                <div className={css.domainInfo}>
+                    <h2 className={css.domainTitle}>{result.domain}</h2>
+                    <ul className={css.domainList}>
+                        <li className={css.domainItem}>
+                            <h3 className={css.domainItemTitle}>Administrative Contact</h3>
                             <p>State: {result.whois.administrativeContact.state}</p>
                             <p>Country: {result.whois.administrativeContact.country}</p>
                         </li>
-                        <li>
-                            <h3>Registrant Info</h3>
+                        <li className={css.domainItem}>
+                            <h3 className={css.domainItemTitle}>Registrant Info</h3>
                             <p>Registrant Id: {result.whois.registrarIANAID}</p>
                             <p>Registrant Name: {result.whois.registrarName}</p>
                             <p>Organization: {result.whois.technicalContact.organization}</p>
                         </li>
-                        <li>
-                            <h3>Domain Info</h3>
+                        <li className={css.domainItem}>
+                            <h3 className={css.domainItemTitle}>Domain Info</h3>
                             <p>Domain Name: {result.whois.domainName}</p>
                             <p>Created: {result.whois.createdDate}</p>
                             <p>Expire: {result.whois.expiresDate}</p>
@@ -54,7 +54,7 @@ const SearchRes = () => {
                 </div>
             )}
 
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p className={css.error}>{error}</p>}
         </>
     )
 
