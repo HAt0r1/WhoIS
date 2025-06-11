@@ -10,12 +10,92 @@
 
 .input {
   min-width: 70%;
-  height: 1.6rem;
-  padding-left: 0.5rem;
+  height: 2rem;
+  padding-left: 1.5rem;
   color: var(--c-primary-text);
   background-color: transparent;
   outline: none;
   border: 0.09375rem solid #fafafa;
   border-radius: 1rem;
   transition: border-color 350ms ease-in;
+}
+
+.input:focus {
+  border-color: var(--c-logo);
+}
+
+.form:focus-within .search {
+  color: var(--c-logo);
+}
+
+.button {
+  position: absolute;
+  top: 15%;
+  left: 83%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search {
+  color: var(--c-primary-text);
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: color 350ms ease-in;
+}
+
+.error {
+  color: #FF0000FF;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.domainInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  border: 0.0825rem solid var(--c-primary-text);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.domainTitle {
+  color: var(--c-logo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.11;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.domainList {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+}
+
+.domainItem {
+  display: flex;
+  flex-direction: column;
+  border: 0.0825rem solid var(--c-primary-text);
+  border-radius: 1rem;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.domainItemTitle {
+  color: var(--c-logo);
+  line-height: 1.11;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.domainItemTitle ~ p {
+  color: var(--c-primary-text);
 }
