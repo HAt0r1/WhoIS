@@ -1,7 +1,12 @@
+import SearchRes from "../../components/SearchRes/SearchRes.jsx";
+import css from "./SearchPage.module.css";
+
 
 const SearchPage = () => {
     return (
-        <h1>Search Page</h1>
+        <main className={css.main}>
+            <SearchRes />
+        </main>
     )
 }
 
