@@ -2,8 +2,9 @@ import {Toaster} from "react-hot-toast";
 import {lazy, Suspense, useEffect} from "react";
 import {Routes, Route, useLocation} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {selectIsRefreshing} from "../../redux/auth/selectors.js";
+import {selectIsRefreshing, selectIsLoggedIn} from "../../redux/auth/selectors.js";
 import {refresh} from "../../redux/auth/operations.js";
+import {signOut} from "../../redux/auth/operations.js";
 
 import Loader from "../Loader/Loader.jsx";
 import LayoutApp from "../LayoutApp/LayoutApp.jsx";
@@ -17,10 +18,19 @@ const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/NotFoundPage.js
 
 const App = () => {
     const isRefreshing= useSelector(selectIsRefreshing);
+    const isLoggedIn= useSelector(selectIsLoggedIn);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(refresh());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!isRefreshing && !isLoggedIn) {
+            dispatch(signOut());
+        }
+    }, [isRefreshing, isLoggedIn, dispatch]);
+
     return (
         <>
             {isRefreshing ? (<Loader />) : (
