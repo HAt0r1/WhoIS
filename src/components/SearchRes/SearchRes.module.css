@@ -1,0 +1,21 @@
+
+.form {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+
+.input {
+  min-width: 70%;
+  height: 1.6rem;
+  padding-left: 0.5rem;
+  color: var(--c-primary-text);
+  background-color: transparent;
+  outline: none;
+  border: 0.09375rem solid #fafafa;
+  border-radius: 1rem;
+  transition: border-color 350ms ease-in;
+}
