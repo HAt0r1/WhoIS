@@ -15,6 +15,7 @@ const domainSlice = createSlice({
         builder
             .addCase(searchDomain.pending, (state) => {
                 state.isLoading = true;
+                state.result = null;
                 state.error = null;
             })
             .addCase(searchDomain.fulfilled, (state, action) => {
@@ -23,7 +24,7 @@ const domainSlice = createSlice({
             })
             .addCase(searchDomain.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                state.error = action.payload || "Search failed";
             });
     },
 });
