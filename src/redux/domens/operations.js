@@ -6,12 +6,12 @@ import {apiInstance} from "../auth/operations.js";
 export const searchDomain = createAsyncThunk(
     "domain/search",
     async (domainName, thunkAPI) => {
+        console.log("Auth header:", apiInstance.defaults.headers.common.Authorization);
         try {
             const response = await apiInstance.post("/domain/search", { domain: domainName });
-            console.log("Headers:", apiInstance.defaults.headers.common);
-            console.log("Response:", response.data);
             return response.data;
         } catch (error) {
+            console.error("Search error:", error.response?.data || error.message);
             return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
         }
     }
