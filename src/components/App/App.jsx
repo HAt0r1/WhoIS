@@ -33,6 +33,7 @@ const App = () => {
 
     return (
         <>
+            <Toaster position="top-right"/>
             {isRefreshing ? (<Loader />) : (
         <LayoutApp>
             <Suspense fallback={<Loader />}>
