@@ -3,6 +3,7 @@ import {useId} from "react";
 import {signIn} from "../../redux/auth/operations.js";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-hot-toast";
 import css from "../SignUpForm/SignUpForm.module.css";
 
 const SignInForm = () => {
@@ -15,15 +16,18 @@ const SignInForm = () => {
         try {
             const result = await dispatch(signIn(values));
             if (result.meta.requestStatus === "fulfilled") {
+                toast.success("Успішний вхід");
                 resetForm();
                 navigation("/");
             } else {
-                console.error("Login failed:", result.error.message);
+                toast.error(result.payload || "Помилка при вході");
             }
         } catch (error) {
+            toast.error("Невідома помилка при вході");
             console.error("Unexpected error during login:", error);
         }
     };
+
 
     return (
         <>
