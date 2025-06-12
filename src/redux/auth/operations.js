@@ -76,6 +76,7 @@ export const signIn = createAsyncThunk("auth/signin", async (user, thunkAPI) => 
 export const signOut = createAsyncThunk("auth/signout", async (_, thunkAPI) => {
     try {
         await apiInstance.post("/auth/logout");
+        localStorage.removeItem('persist:auth');
         clearAuthHeader();
     } catch (error) {
         clearAuthHeader();
